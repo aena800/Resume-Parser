@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted CV Data</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-5">
+
+    <div class="card">
+        <div class="card-header">
+            Extracted Data
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Name:</strong> {{ data['Name'] }}</p>
+            <p class="card-text"><strong>Email Address:</strong> {{ data['email'] }}</p>
+            <p class="card-text"><strong>Phone Number:</strong> {{ data['phone'] }}</p>
+            
+            {% if data['university'] %}
+                <p class="card-text"><strong>University:</strong> {{ data['university'] | join(', ') }}</p>
+            {%endif%}
+            {% if data['designation'] %}
+                <p class="card-text"><strong>Designation:</strong> {{ data['designation'] }}</p>
+            {%endif%}
+            {% if data['objective'] %}
+                <p class="card-text"><strong>Interests:</strong> {{ data['objective'] }}</p>
+            {%endif%}
+
+            <!--
+                <p class="card-text"><strong>Work History:</strong> 
+                {% if data['Job History'] %}
+                    {% for work in data['Job History'] %}
+                        <span class="badge badge-info m-1">{{ data['Job History'] }}</span>
+                    {% endfor %}
+                {% else %}
+                    No work information available.
+                {% endif %}
+            </p>
+            -->
+            <p class="card-text"><strong>Work History:</strong> {{ data['Job History'] | join(', ') }}</p>
+            
+            <p class="card-text"><strong>Education History:</strong> 
+                {% if data['Education'] %}
+                    {% for education in data['Education'] %}
+                        <span class="badge badge-info m-1">{{ education['Education'] }}</span>
+                    {% endfor %}
+                {% else %}
+                    No education information available.
+                {% endif %}
+            </p>
+            
+            <p class="card-text"><strong>Skills:</strong> {{ data['Skills'] | join(', ') }}</p>
+            
+            <p class="card-text"><strong>Languages:</strong> {{ data['languages'] | join(', ') }}</p>
+            
+            <p class="card-text"><strong>Accomplishments:</strong> 
+                {% if data['accomplishments'] %}
+                    {% for accomplishment in data['accomplishments'] %}
+                        <span class="badge badge-success m-1">{{ accomplishment }}</span>
+                    {% endfor %}
+                {% else %}
+                    No accomplishments available.
+                {% endif %}
+            </p>
+            <!-- more custom fields as needed -->
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
